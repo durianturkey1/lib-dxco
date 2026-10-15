@@ -1,7 +1,11 @@
 #ifndef FACEBOOKAPI_H_
 #define FACEBOOKAPI_H_
 
+#include "platform/CCPlatformConfig.h"
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include <jni.h>
+#endif
 
 #include <string>
 

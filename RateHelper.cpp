@@ -1,8 +1,10 @@
 #include "RateHelper.h"
+#include "cocos2d.h"
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
 #include <jni.h>
-
-#include "cocos2d.h"
+#endif
 
 namespace dxco {
 

@@ -1,5 +1,26 @@
 #include "FacebookAPI.h"
 #include "cocos2d.h"
+
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
+
+namespace dxco {
+
+// Desktop builds ship without the Facebook SDK: report no session so that
+// UserDAO skips every Facebook code path.
+bool FacebookAPI::hasFacebookSession() { return false; }
+
+std::string FacebookAPI::getAccessToken() { return ""; }
+std::string FacebookAPI::getUserID() { return ""; }
+std::string FacebookAPI::getUsername() { return ""; }
+std::string FacebookAPI::getFirstName() { return ""; }
+std::string FacebookAPI::getLastName() { return ""; }
+void FacebookAPI::invite() { }
+void FacebookAPI::rate() { }
+
+} /* namespace dxco */
+
+#else
+
 #include "platform/android/jni/JniHelper.h"
 #include <jni.h>
 
@@ -195,3 +216,5 @@ bool FacebookAPI::hasFacebookSession() {
 
 }
 } /* namespace dxco */
+
+#endif
